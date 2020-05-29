@@ -35,8 +35,8 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addCollection("tagList", require("./_11ty/getTagList"));
 
-  eleventyConfig.addPassthroughCopy("img");
-  eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("assets");
+  // eleventyConfig.addPassthroughCopy("css");
 
   /* Markdown Overrides */
   let markdownLibrary = markdownIt({
@@ -68,6 +68,7 @@ module.exports = function(eleventyConfig) {
   });
 
   return {
+    passthroughFileCopy: true,
     templateFormats: [
       "md",
       "njk",
@@ -85,14 +86,15 @@ module.exports = function(eleventyConfig) {
     // You can also pass this in on the command line using `--pathprefix`
     // pathPrefix: "/",
 
-    markdownTemplateEngine: "liquid",
+
+    markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     dataTemplateEngine: "njk",
 
     // These are all optional, defaults are shown:
     dir: {
-      input: ".",
-      includes: "_includes",
+      input: "src",
+      includes: "includes",
       data: "_data",
       output: "_site"
     }
